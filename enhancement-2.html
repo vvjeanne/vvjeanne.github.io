@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CS-499 computer science ePortfolio showcasing software development enhancements and reflections.">
+  <title>Enhancement 2 | CS-499 ePortfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="ePortfolio home">
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="self-assessment.html">Self-Assessment</a>
+        <a href="code-review.html">Code Review</a>
+        <a href="artifacts.html" aria-current="page">Artifacts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p>｡･:*˚:✧｡</p>
+        <h1>Algorithms <span class="accent">& Data Structures</span></h1>
+        <p class="hero-copy"></p>
+        <div class="tag-row">
+          <span class="tag">K-Pop Concert Tracker</span>
+          <span class="tag">CS-499</span>
+        </div>
+      </div>
+    </section>
+    <section class="container content-layout">
+      <article class="prose">
+        <h2>Artifact Description</h2>
+        <div class="placeholder">The artifact I selected for this enhancement is my K-Pop Concert Tracker Android application, which I originally created during CS-360: Mobile Architecture and Programming. The application was designed to give users a single place to keep track of upcoming K-pop concerts and events instead of having to keep track of information across different websites, emails, or social media. Users can create an account, log in, add concert information, edit or delete events, organize events by category, and receive reminders for upcoming concerts.
+<br>When I originally created the application, I was mainly focused on learning how to build a functional mobile application and getting the required features working. For this enhancement, I used the same application as a starting point and focused specifically on how concert information was organized, searched, prioritized, and compared. I added data structures and algorithms that could make it easier for the application to work with upcoming concerts and categories as the amount of stored information grows. 
+</div>
+        <h2>Reason for Including the Artifact and Improvements Made</h2>
+        <div class="placeholder">I selected this artifact for my ePortfolio because it gave me an opportunity to take an application that I had already created and improve the way it handles and organizes data. When I originally developed the application, I mostly thought about storing the concert information and displaying it to the user. Revisiting the project allowed me to look at the same functionality from an algorithms and data structures perspective and think about whether the way information was being accessed was still appropriate if the application had many more concerts. 
+<br>One of the main improvements I made was adding a priority queue for upcoming concerts. The original application retrieved the user’s events from the database and displayed them in a list, but it did not have a specific data structure for determining which upcoming concert should have the highest priority. I created a ‘ConcertPriorityQueue’ that uses the concert date and time to prioritize future events, with the soonest upcoming concert placed at the front of the queue. This allowed the dashboard to display the user’s next upcoming concert without having to manually search through the entire collection each time. I also added logic so that concerts that have already passed are not added to the priority queue. 
+<br>I also created a category index using a ‘HashMap’ to organize concerts by their category. The original application could filter concerts by category, but the filtering process required going through the collection of events. The new ‘ConcertCategoryIndex’ stores categories as keys and the related concerts as values, which allows the application to directly retrieve the events associated with a selected category. This gave me an opportunity to apply a data structure that is useful for repeated lookups instead of only relying on a basic list and searching through it each time. 
+<br>Another improvement I made was adding schedule conflict detection. I created a ‘ConcertConflictDetector’ that sorts the concert events by their date and time and then compares neighboring events to determine whether two concerts are scheduled for the same date and time. If a conflict is found, the dashboard can display a message to the user. This gave me experience with using sorting as part of an algorithm rather than only using sorting to change how information is displayed. It also allowed me to add a useful feature based on the actual type of information the application stores. 
+<br>I also added automated unit tests for the new data structures and algorithms. The priority queue tests verify that upcoming concerts are prioritized correctly, past concerts are excluded, concerts are returned in chronological order, and the queue size is correct. The category index tests verify that events are grouped correctly and that rebuilding the index replaces older data. The conflict detector tests verify that events with the same date and time are detected, different dates and times are not incorrectly marked as conflicts, multiple conflicts can be detected, and events are compared chronologically. All of these tests passed successfully. 
+</div>
+        <h2>Course Outcomes and Outcome-Coverage Plan</h2>
+        <div class="placeholder">I believe that I met the goals I originally planned for this enhancement and made progress toward Outcomes 3 and 4. These were the outcomes I identified for the algorithms and data structures portion of my code review. This enhancement gave me a more direct opportunity to demonstrate those outcomes because I had to evaluate how the application handled data and then select algorithms and data structures that were appropriate for the problem. 
+<br>For Outcome 3, I demonstrated progress toward designing and evaluating a computing solution by analyzing how the original application retrieved and filtered concert information and considering how those approaches would work with a larger collection of events. The original list-based approach was simple and appropriate for the smaller application, but repeatedly searching through the collection could become less efficient as the number of concerts increased. I evaluated this approach and added a priority queue, category index, and conflict detection algorithm to address different data organization and retrieval needs. This enhancement helped me better understand that designing a computing solution involves considering not only whether the code produces the correct result, but also how the data is organized and accessed. 
+<br>For Outcome 4, I demonstrated the use of well-founded software techniques by applying data structures and algorithms such as priority queues, hash maps, and sorting to an existing application. I also considered the time complexity and trade-offs of the approaches I used. For example, the priority queue provides efficient access to the next upcoming concert, while the hash map allows category information to be accessed without repeatedly scanning the entire event list. At the same time, these structures add complexity and require the application to keep the stored information synchronized with the current events. Working through these trade-offs helped me understand that there is not always one data structure that is best for every situation. 
+<br>I believe my outcome-coverage plan is still appropriate. The first enhancement provided stronger evidence for the software engineering, architecture, and security portions of my portfolio, while this enhancement provided stronger evidence for algorithms and data structures. I do not currently plan to change the outcomes covered by this enhancement. Instead, I plan to use the third enhancement to provide additional evidence for the database-related skills and to further support the outcomes across the completed portfolio. 
+</div>
+        <h2>Reflection on the Enhancement Process</h2>
+        <div class="placeholder">The biggest thing I learned from this enhancement was that data structures and algorithms are not just concepts used in isolated programming exercises. Before working on this enhancement, I understood ideas such as lists, hash maps, priority queues, sorting, and Big-O analysis individually, but applying them to an application I had already built made their purpose much clearer. I had to think about what the application actually needed to do with the concert information and then decide which structure or algorithm made sense for each situation. 
+<br>The priority queue was especially helpful for understanding how a data structure can change the way an application accesses information. Instead of simply displaying a list of concerts and looking through it for the next event, the priority queue organizes the events based on their date and time. This made me think more about the difference between storing data and organizing data in a way that supports a specific operation. It also showed me why choosing a data structure should depend on how the application will actually use the information. 
+<br>The category index also helped me understand the trade-offs involved with using different data structures. The original category filtering was fairly straightforward because the application could just look through the list of events. Creating a ‘HashMap’ made category lookups more direct, but it also meant that I had another structure that needed to be rebuilt or updated when the event data changed. This showed me that improving efficiency can sometimes make an application more complicated, so the benefits of a data structure have to be considered along with the additional code and maintenance it requires. 
+<br>Adding the conflict detection algorithm was another learning experience because I had to think about how the events should be ordered before they could be compared. Sorting the events by date and time made it possible to compare neighboring events and identify conflicts. I also had to create tests for different situations, including multiple conflicts and events that had different dates or times. One of the tests initially exposed an issue with how equal-time events were being compared, which helped me see the importance of testing the actual behavior of an algorithm instead of assuming that it works because the basic case works. 
+<br>One challenge was deciding how much complexity was actually appropriate for this application. The original list-based approach was not necessarily wrong, especially because the K-Pop Concert Tracker is a relatively small application. Adding more advanced data structures just for the sake of using them would not have been very useful. Instead, I tried to connect each enhancement to an actual operation the application performs, such as finding the next concert, retrieving events by category, or identifying scheduling conflicts. This helped me better understand that good algorithm and data structure choices should be based on the problem being solved and the trade-offs involved. 
+<br>This enhancement changed the way I think about the data in my application. When I originally created the K-Pop Concert Tracker, I mostly thought about what information needed to be saved and displayed. After completing this enhancement, I have a better understanding of how the way that information is organized can affect the application’s efficiency and functionality. Being able to apply these concepts to a project I had already built also made the material feel more practical and helped me see how algorithms and data structures can be used as part of a larger software solution. 
+</div>
+        <div class="actions">
+          <a class="button secondary" href="artifacts.html">← All artifacts</a>
+          <a class="button" href="index.html">Home</a>
+        </div>
+      </article>
+      <aside class="sidebar">
+        <h3>Enhancements</h3>
+        <a href="enhancement-1.html">01 · Software Engineering</a>
+        <a href="enhancement-2.html">02 · Algorithms & Data Structures</a>
+        <a href="enhancement-3.html">03 · Databases</a>
+        <hr style="border: 0; border-top: 1px solid var(--line); margin: 16px 0;">
+        <h3>Useful links</h3>
+        <a href="artifacts.html">Artifact overview</a>
+        <a href="code-review.html">Code review</a>
+      </aside>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <span>© Ava Lindgren · CS-499 Computer Science ePortfolio</span>
+      <span>Built with HTML, CSS, and GitHub Pages</span>
+    </div>
+  </footer>
+</body>
+</html>

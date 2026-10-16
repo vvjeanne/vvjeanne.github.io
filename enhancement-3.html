@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CS-499 computer science ePortfolio showcasing software development enhancements and reflections.">
+  <title>Enhancement 3 | CS-499 ePortfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="ePortfolio home">
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="self-assessment.html">Self-Assessment</a>
+        <a href="code-review.html">Code Review</a>
+        <a href="artifacts.html" aria-current="page">Artifacts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p>｡･:*˚:✧｡</p>
+        <h1>Database <span class="accent">Enhancement</span></h1>
+        <p class="hero-copy"></p>
+        <div class="tag-row">
+          <span class="tag">K-Pop Concert Tracker</span>
+          <span class="tag">CS-499</span>
+        </div>
+      </div>
+    </section>
+    <section class="container content-layout">
+      <article class="prose">
+        <h2>Artifact Description</h2>
+        <div class="placeholder">The artifact I selected for this enhancement is my K-Pop Concert Tracker Android application, which I originally created during CS-360: Mobile Architecture and Programming. The application was designed to give users a single place to keep track of upcoming K-pop concerts and events instead of having to keep track of information across different websites, emails, or social media. Users can create an account, log in, add concert information, edit or delete events, organize events by category, and receive reminders for upcoming concerts. 
+<br>For this enhancement, I used the same application as a starting point and focused on improving how the application stores and manages its data. I worked on migrating the original SQLite database approach to Room, organizing the database into separate entities for users, artists, venues, and concert events, and creating DAO and repository classes to handle database operations. I also worked on a migration to move existing concert information into the updated database structure. As I continued integrating these changes, I made additional updates to how the application handles database operations and loads concert information. My goal was to make the database more organized and improve the separation between the database, application logic, and user interface.
+</div>
+        <h2>Reason for Including the Artifact and Improvements Made</h2>
+        <div class="placeholder">I selected this artifact for my ePortfolio because it allowed me to build on an application I had already created and apply more advanced database concepts to a project with practical uses. When I originally developed the application, I was mainly focused on getting the required features working and making sure users could save and manage concert information. Revisiting the project gave me an opportunity to think more about how that information was stored and how the application could be structured to support future changes.
+<br>One of the main improvements I made was migrating the database from the original SQLite helper approach to Room. Room provides a more structured way to work with a database in an Android application through entities, DAOs, and database configuration. I created entity classes for users, artists, venues, and concert events. This allowed me to separate information that was originally stored together in the events table. For example, instead of storing an artist’s name and venue information directly in every concert record, concert events can reference separate artist and venue records. This reduces unnecessary duplication and makes the database structure more organized.
+<br>I also created DAO classes to handle database operations for the different entities. These classes provide methods for inserting, retrieving, updating, and deleting information. I then used repository classes to connect the database operations to the rest of the application. This helped me better understand how separating responsibilities between the database, repository, ViewModel, and Activity can make code easier to maintain and modify. Rather than having the Activity handle database operations directly, the application can use these separate layers to manage its information. This also makes it easier to change how the database works without needing to rewrite as much of the user interface code.
+<br>Another improvement was creating a database migration to move the existing information into the new structure. This was an important part of the enhancement because changing a database is not only about creating a new schema. Existing information also needs to be considered when the application is updated. I had to think about how the original concert records could be separated into artist, venue, and event records while maintaining the relationships between them. This helped me understand why database migrations need to be planned carefully, especially when an application already contains user data.
+<br>I also worked on connecting the Room database to the existing repository and ViewModel structure. During integration, I encountered problems with database operations being performed on the main thread, which caused the login and dashboard screens to crash. I updated the relevant code so database operations could run in the background instead of blocking the user interface. I also worked on the session handling and concert-loading functionality to help the application move between login and dashboard screens correctly. These changes helped me understand that database functionality needs to be integrated carefully with the rest of the application, rather than only working correctly when individual database operations are tested separately.
+<br>Another part of the improvement process involved testing and correcting the concert management functionality. I worked on the event details screen and its database operations so concerts could be added and updated while reminder scheduling was handled in the background. During later testing, I discovered that category filtering was not working correctly even though concerts were displaying again. I updated the dashboard filtering logic to handle category names more consistently and filter the loaded concert list correctly. After this change, I manually tested the application again and confirmed that the concert display and category filtering were working as expected.
+<br>I also created and ran automated tests for the Room database and repository functionality. The tests passed for creating and authenticating users, inserting and retrieving concerts, preventing users from retrieving another user’s concerts, reusing artist and venue records, updating concerts, and deleting concerts. These tests provided evidence that the main database operations and relationships were working in the test environment. I then performed manual testing on the integrated application to make sure the changes worked together in actual use. This was important because the earlier integration issues showed that passing individual database tests does not necessarily mean the entire application will work correctly. After making the additional fixes, I tested the application again and confirmed that the functionality I checked was working as expected.
+</div>
+        <h2>Course Outcomes and Outcome-Coverage Plan</h2>
+        <div class="placeholder">I believe this enhancement helped me make progress toward the database-related skills I planned to demonstrate in my ePortfolio, especially Outcome 3, which focuses on designing and evaluating computing solutions, and Outcome 4, which focuses on using well-founded and innovative techniques. It also provided additional opportunities to consider Outcome 5, which focuses on developing a security mindset. The database work required me to evaluate the original structure, apply a different approach, and consider how data relationships, access control, and application architecture affect the overall solution.
+<br>For Outcome 3, I demonstrated progress by evaluating the original database design and restructuring how concert information is stored. The original application stored the artist and venue information directly in each event record. By creating separate artist and venue entities and connecting them to concert events through foreign keys, I applied normalization concepts to reduce duplicated information and establish clearer relationships between records. I also had to consider how existing data would be transferred to the new structure. The problems I encountered during integration showed me that evaluating a computing solution involves more than checking whether individual components work. The database, repository, ViewModel, and user interface must also work together correctly for the application to function as intended. Testing the application again after making corrections helped me evaluate whether the changes improved the overall solution.
+<br>For Outcome 4, I demonstrated the use of established software and database techniques by applying Room, DAOs, repositories, entity relationships, and database migrations. I also created tests to evaluate important database operations and verify that users could only retrieve their own concert information. Working with Room gave me a better understanding of how Android provides tools that can help organize database access and make it easier to work with structured information. At the same time, the runtime issues I encountered showed that using a more advanced framework does not automatically make an application better. The implementation still needs to be correct, and database operations need to be handled appropriately so that they do not block the user interface or cause crashes. Correcting these issues and testing the integrated application helped me apply these concepts more effectively.
+<br>For Outcome 5, I continued to consider security through user authentication, password hashing, and access restrictions on concert records. The repository and database design need to preserve those protections as the application changes. For example, the database tests that verify one user cannot retrieve another user’s concerts helped me evaluate an important part of protecting user information. The login and session issues also reminded me that security-related functionality needs to be tested after changes to the underlying database and application architecture. I learned that security needs to remain part of the development process even when the main goal of an enhancement is to improve database organization.
+<br>My overall outcome-coverage plan has not changed significantly. The first enhancement focused on software engineering, architecture, and security, while the second focused on algorithms and data structures. This third enhancement adds more evidence of database design, data relationships, persistence, and migration skills. Through the additional integration work and testing, I was also able to improve the application’s overall functionality and gain a better understanding of how database changes affect other parts of an application. I believe the updated artifact provides stronger evidence of my progress toward these outcomes because it includes both the planned database improvements and the additional work needed to make those improvements function within the application.
+</div>
+        <h2>Reflection on the Enhancement Process</h2>
+        <div class="placeholder">The biggest thing I learned from this enhancement was that database design involves more than deciding where information should be stored. When I originally created the K-Pop Concert Tracker, I was mainly concerned with making sure the application could save and display concert information. Working on this enhancement made me think more about how that information is organized, how different records relate to each other, and how the application should access the database as it grows.
+<br>Migrating to Room was a useful learning experience because it introduced me to a more structured approach to database access in Android. Creating separate entities for users, artists, venues, and concert events helped me understand normalization and why separating related information can be useful. I also learned more about the role of DAOs and repositories in separating database operations from the rest of the application. Instead of treating the database as something the user interface accesses directly, I had to consider how the different layers should work together. This gave me a better understanding of how database design and application architecture support each other.
+<br>Database migration was another important part of the process. I had to consider how the existing database structure differed from the new one and how the original event information could be transferred into the updated tables. This helped me understand that changes to a database need to account for existing data and relationships, rather than only focusing on the new design. I also learned that small differences in column names, constraints, and entity definitions can affect whether the database works correctly.
+<br>One of the biggest challenges was integrating the Room database with the rest of the application. My database tests passed, but testing the full application revealed problems that the isolated tests had not caught. The login screen initially crashed because a database operation was running on the main thread. After I moved the login operations to a background thread and corrected the session storage, I was able to log in, but the dashboard then crashed when it tried to load concert information. I made another change to the dashboard ViewModel to move those database operations off the main thread. I also made updates to the event details screen so database operations and reminder scheduling could run in the background. These changes helped resolve the earlier integration problems and allowed me to continue testing the application.
+<br>Another challenge was making sure that existing features continued to work after changes to the database and application logic. For example, after correcting the concert display, I discovered that category filtering was still not working correctly. I had to revisit the dashboard code and update how categories were compared and filtered. This reminded me that a change can fix one problem while leaving another issue that is not immediately obvious. I manually tested the application again after the changes and confirmed that the concert display and category filtering were working correctly. This reinforced the importance of testing existing features after modifying the underlying code.
+<br>These problems also showed me the difference between testing individual database functions and testing the complete application. The automated tests verified that specific operations worked under the conditions being tested, but they did not cover every interaction between the database, ViewModels, Activities, and reminder features. I learned that integration testing is an important part of development because the different components depend on each other. I cannot rely only on individual tests to determine whether the entire application is working as intended.
+<br>I also learned that making a change to one part of an application can affect other parts that depend on it. Moving from the original SQLite helper to Room required changes to database access, but it also affected how the login screen, dashboard, and event details screen needed to handle those operations. For example, database calls that previously ran synchronously could no longer run on the main thread with Room’s default configuration. I had to consider background execution and how the results should be returned to the user interface. This helped me better understand why application architecture needs to account for how components interact, not just how each component is written.
+<br>This enhancement helped me become more comfortable working with database structure, persistence, and the integration of database operations into an Android application. I also learned that debugging and testing are important parts of improving an existing project, especially when changes affect several connected components. Rather than stopping after the database tests passed, I continued testing the application, addressed the problems I found, and checked the affected features again. After these changes, I manually tested the application and confirmed that the functionality I checked was working correctly. This process gave me a better understanding of how to evaluate an application as a complete solution and how to make improvements while preserving its existing functionality. 
+</div>
+        <div class="actions">
+          <a class="button secondary" href="artifacts.html">← All artifacts</a>
+          <a class="button" href="index.html">Home</a>
+        </div>
+      </article>
+      <aside class="sidebar">
+        <h3>Enhancements</h3>
+        <a href="enhancement-1.html">01 · Software Engineering</a>
+        <a href="enhancement-2.html">02 · Algorithms & Data Structures</a>
+        <a href="enhancement-3.html">03 · Databases</a>
+        <hr style="border: 0; border-top: 1px solid var(--line); margin: 16px 0;">
+        <h3>Useful links</h3>
+        <a href="artifacts.html">Artifact overview</a>
+        <a href="code-review.html">Code review</a>
+      </aside>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <span>© Ava Lindgren · CS-499 Computer Science ePortfolio</span>
+      <span>Built with HTML, CSS, and GitHub Pages</span>
+    </div>
+  </footer>
+</body>
+</html>

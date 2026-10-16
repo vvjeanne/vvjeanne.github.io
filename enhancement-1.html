@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CS-499 computer science ePortfolio showcasing software development enhancements and reflections.">
+  <title>Enhancement 1 | CS-499 ePortfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html" aria-label="ePortfolio home">
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="self-assessment.html">Self-Assessment</a>
+        <a href="code-review.html">Code Review</a>
+        <a href="artifacts.html" aria-current="page">Artifacts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <p>｡･:*˚:✧｡</p>
+        <h1>Software Engineering <span class="accent">& Design</span></h1>
+        <p class="hero-copy"></p>
+        <div class="tag-row">
+          <span class="tag">K-Pop Concert Tracker</span>
+          <span class="tag">CS-499</span>
+        </div>
+      </div>
+    </section>
+    <section class="container content-layout">
+      <article class="prose">
+        <h2>Artifact Description</h2>
+        <div class="placeholder">The artifact I selected for this enhancement is my K-Pop Concert Tracker Android application, which I originally created during CS-360: Mobile Architecture and Programming. The application was designed to give users a single place to keep track of upcoming K-pop concerts and events instead of having to keep track of information across different websites, emails, or social media. Users can create an account, log in, add concert information, edit or delete events, organize events by category, and receive reminders for upcoming concerts.
+<br>When I originally created the application, I had very little experience with mobile application development. A large part of the project was learning how Android applications are structured and how the different parts of an application work together. For this enhancement, I used the same application as a starting point and focused specifically on improving its software design, security, reliability, and testability. 
+        </div>
+        <h2>Reason for Including the Artifact and Improvements Made</h2>
+        <div class="placeholder">I selected this artifact for my ePortfolio because it represents one of the projects where I experienced the most growth as a developer. When I first created the application, I was mainly focused on getting the required functionality working. Since then, I have learned more about software engineering practices and have been able to look at the same code from a different perspective. Instead of only asking whether the application works, I was able to consider whether the code was organized in a way that would make it easier to maintain, test, and expand in the future. 
+One of the major improvements I made was separating the application's user interface from its database operations. The original Activities communicated more directly with the DatabaseHelper, which worked but created a stronger dependency between the UI and the database layer. I introduced a repository layer and ViewModels so that the Activities could focus more on displaying and handling user interaction while the ViewModels and repository handled the application's data operations. This gave me more experience with separation of concerns and helped make the application structure more maintainable. 
+<br>I also improved the application's reminder architecture. The original reminder system had a problem with the information being passed between the reminder scheduler and SmsReminderReceiver. The scheduler was passing event and user IDs, while the receiver was expecting different event information. I changed the design so that the scheduler passes the necessary IDs and the receiver retrieves the current event and user information through the repository. This made the reminder process more consistent with the rest of the application's architecture and addressed an issue identified in the original project feedback. 
+<br>Another important improvement was password security. The original application stored passwords using an unsalted SHA-256 hash. For this enhancement, I changed the implementation to use PBKDF2-HMAC-SHA256 with a randomly generated salt and a larger number of hashing iterations. This gave me a better understanding of why passwords should not simply be stored using a basic hashing algorithm and showed me how security considerations need to be part of software design rather than something added at the very end. 
+<br>I also added automated instrumented tests for the database functionality. The tests verify that users can authenticate with the correct password, that incorrect passwords are rejected, and that events can be inserted, retrieved, updated, and deleted. I also added a test to verify that an event belonging to one user cannot be retrieved using another user's ID. All six tests passed successfully. Adding these tests was useful because it gave me a way to verify that the changes I made did not break important functionality and that the application's data-access behavior was working as expected. 
+        </div>
+        <h2>Course Outcomes and Outcome-Coverage Plan</h2>
+        <div class="placeholder">I believe that I met the goals I originally planned for this enhancement and made progress toward all three of the outcomes I identified in my code review: Outcomes 3, 4, and 5. Although this enhancement was focused primarily on software engineering and design, the changes I made allowed me to demonstrate parts of each of these outcomes. 
+<br>For Outcome 3, I demonstrated progress toward designing and evaluating a computing solution by revisiting an existing application and identifying areas where its design could be improved. Instead of treating the original application as finished simply because it worked, I evaluated how its different components interacted and made changes to improve separation of concerns, maintainability, and reliability. The repository and ViewModel architecture helped separate the user interface from the database operations, while the automated tests gave me a way to evaluate whether important application functionality continued to work after the changes. I understand that my work in this enhancement does not demonstrate every part of Outcome 3, particularly the algorithms and data structures portion, which I plan to address through my other planned enhancement. 
+<br>For Outcome 4, this enhancement most directly demonstrates my ability to use software engineering techniques and tools to improve an existing computing solution. I applied architectural practices such as repositories and ViewModels, improved the reminder architecture, and added automated instrumented testing. These changes were not simply additional features for the user; they improved how the application was structured and maintained behind the scenes. This helped me better understand how software engineering practices can be used to make an application more reliable and easier to modify as it grows. 
+<br>For Outcome 5, I focused on developing a stronger security mindset by identifying weaknesses in the original application's password storage and improving the implementation. The original application used an unsalted SHA-256 hash for passwords, so I replaced that approach with salted PBKDF2-HMAC-SHA256 password hashing using randomly generated salts. I also added a test to verify that users cannot retrieve another user's event data. These changes helped me think more about potential vulnerabilities and privacy concerns rather than only considering whether the application functioned correctly under normal circumstances. 
+<br>I believe the enhancement met the goals I established in my code review in Module One. My understanding of these outcomes has also developed during the process. I initially thought of software engineering mostly in terms of writing code that works, but this enhancement showed me that evaluating existing code, considering security, separating responsibilities, and testing changes are also important parts of developing a professional quality computing solution. I do not currently plan to change my outcome-coverage plan, although I expect my additional enhancements to provide stronger evidence for the portions of Outcomes 3, 4, and 5 that this software engineering enhancement did not fully address. 
+</div>
+        <h2>Reflection on the Enhancement Process</h2>
+        <div class="placeholder">The biggest thing I learned from this enhancement was that making an application work and designing an application well are not necessarily the same thing. When I originally developed the K-Pop Concert Tracker, getting the features working was my main priority. Revisiting the project later made it easier to see areas where the code could be structured better even though the application already functioned. 
+<br>The refactoring process also helped me understand the purpose of architectural patterns more than I did when I first learned about them. Creating the repository and ViewModel layers was not just about adding more classes. It helped separate responsibilities so that different parts of the application had clearer purposes. I had to think about which layer should be responsible for retrieving data, which layer should respond to user actions, and which layer should communicate with the database. This was something I understood more conceptually before, but actually applying it to my own existing project made the idea much clearer. 
+<br>The password-security enhancement was another learning experience because it made me look at my original implementation more critically. The original SHA-256 approach was something that worked for the project at the time, but I learned that simply hashing a password is not enough for securely storing passwords. Implementing salts and PBKDF2 showed me that security involves making design decisions based on how the data could potentially be attacked rather than just making sure the application accepts and stores a password. 
+<br>One challenge was making changes to an application that already had several interconnected pieces. Changing the database structure, authentication process, reminder system, and data-access architecture meant I had to be careful not to break functionality that was already working. I built and tested the application after the major changes instead of waiting until the end, which made it easier to identify problems as they came up. 
+<br>Adding automated tests was also a new way of looking at the project for me. Previously, I had mostly tested the application by running it and manually checking the different features. Writing tests required me to think about specific expected outcomes and different situations, including what should happen when the wrong password is entered or when one user attempts to access another user's event. All of the tests passed, which gave me more confidence in the changes and showed me the value of testing as part of the development process. 
+</div>
+        <div class="actions">
+          <a class="button secondary" href="artifacts.html">← All artifacts</a>
+          <a class="button" href="index.html">Home</a>
+        </div>
+      </article>
+      <aside class="sidebar">
+        <h3>Enhancements</h3>
+        <a href="enhancement-1.html">01 · Software Engineering</a>
+        <a href="enhancement-2.html">02 · Algorithms & Data Structures</a>
+        <a href="enhancement-3.html">03 · Databases</a>
+        <hr style="border: 0; border-top: 1px solid var(--line); margin: 16px 0;">
+        <h3>Useful links</h3>
+        <a href="artifacts.html">Artifact overview</a>
+        <a href="code-review.html">Code review</a>
+      </aside>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <span>© Ava Lindgren · CS-499 Computer Science ePortfolio</span>
+      <span>Built with HTML, CSS, and GitHub Pages</span>
+    </div>
+  </footer>
+</body>
+</html>
